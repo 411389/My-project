@@ -34,13 +34,13 @@ public class TicTacToe : MonoBehaviour
             cellButtons[i].onClick.AddListener(()=>CellButtonOnClick(ii));
         }
 
-        gameOverPanel.SetActive(false);
-        infoText.text = ((currentPlayer==1)?"Player":"AI") + "'s turn";
+        gameOverPanel.SetActive(false);        
 
         restart.interactable = true;
         restart.onClick.AddListener(()=>RestartButtonOnClick());
         currentPlayer = Random.Range(1,3);
-        Debug.Log(currentPlayer);
+        // Debug.Log(currentPlayer);
+        infoText.text = ((currentPlayer==1)?"Player":"AI") + " first";
         if (currentPlayer == 2)
         {
             StartCoroutine(AITurn());
@@ -74,7 +74,7 @@ public class TicTacToe : MonoBehaviour
         else
         {
             currentPlayer = (currentPlayer == 1) ? 2 : 1;
-            infoText.text = ((currentPlayer==1)?"Player":"AI") + "'s turn";
+            // infoText.text = ((currentPlayer==1)?"Player":"AI") + "'s turn";
 
             if (currentPlayer == 2)
             {
@@ -85,10 +85,9 @@ public class TicTacToe : MonoBehaviour
 
     private IEnumerator AITurn()
     {        
-        yield return new WaitForSeconds(1f);
         int bestMove = GetBestMove();
-        CellButtonOnClick(bestMove);
-        
+        CellButtonOnClick(bestMove);        
+        yield return new WaitForSeconds(1f);
     }
 
     private int GetBestMove()

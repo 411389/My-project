@@ -85,9 +85,10 @@ public class TicTacToe : MonoBehaviour
 
     private IEnumerator AITurn()
     {        
+        yield return new WaitForSeconds(1f);
         int bestMove = GetBestMove();
         CellButtonOnClick(bestMove);
-        yield return new WaitForSeconds(1f);
+        
     }
 
     private int GetBestMove()
